@@ -262,7 +262,27 @@ What's on your mind today?`
               </Button>
             </div>
             <p className="text-xs text-gray-400 mt-2 text-center">
-              Press Enter to send • Shift+Enter for new line • Powered by AI wisdom
+              Press Enter to send • Shift+Enter for new line • Made by{' '}
+              <a 
+                href="https://www.linkedin.com/in/dan-yan-b08421190/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 underline"
+              >
+                Dan
+              </a>
+              <br />
+              <span className="text-gray-500">
+                Warren Buffett persona referenced from{' '}
+                <a 
+                  href="https://github.com/metapromptjc/People-Inside-Prompts" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 underline"
+                >
+                  People-Inside-Prompts
+                </a>
+              </span>
             </p>
           </div>
         </div>
