@@ -6,15 +6,21 @@ const options = {}
 let client
 let clientPromise
 
-if (process.env.NODE_ENV === 'development') {
-  if (!globalThis._mongoClientPromise) {
+// Only initialize MongoDB connection if URI is provided
+if (uri && uri.startsWith('mongodb')) {
+  if (process.env.NODE_ENV === 'development') {
+    if (!globalThis._mongoClientPromise) {
+      client = new MongoClient(uri, options)
+      globalThis._mongoClientPromise = client.connect()
+    }
+    clientPromise = globalThis._mongoClientPromise
+  } else {
     client = new MongoClient(uri, options)
-    globalThis._mongoClientPromise = client.connect()
+    clientPromise = client.connect()
   }
-  clientPromise = globalThis._mongoClientPromise
 } else {
-  client = new MongoClient(uri, options)
-  clientPromise = client.connect()
+  // Create a rejected promise for when MongoDB is not configured
+  clientPromise = Promise.reject(new Error('MongoDB URI not configured or invalid'))
 }
 
 export default clientPromise
